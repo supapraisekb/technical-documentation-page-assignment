@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+        <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>Git Documentation</header>
+      <ul>
+        
+        <li>
+          <a class="nav-link" href="#Introduction_to_Git">Introduction to Git</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Version_Control_Systems">Version Control Systems</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Blobs_in_Git"
+            >Blobs in Git</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Trees">Trees</a>
+        </li>
+        
+        <li>
+          <a class="nav-link" href="#How_to_Install_Git">How to Install Git</a>
+        </li>
+
+        <li>
+          <a class="nav-link" href="#GitHub">GitHub</a>
+        </li>
+            
+<li>
+  <a  class="nav-link" href="#Operations_in_Git">Operations in Git</a>
+</li>
+
+        <li>
+          <a class="nav-link" href="#Changing_Directory_in_Git"
+            >Changing Directory in Git</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Creating_and_Managing_a_Repository">Creating and Managing a Repository</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Cloning_a_Repository">Cloning a Repository</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Branching">Branching</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Git_Checkout">Git Checkout</a>
+          </li>
+        <li>
+          <a class="nav-link" href="#Git_Status">Git Status</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Git_Add">Git Add</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Git_Commit">Git Commit</a>
+          </li>
+        <li>
+          <a class="nav-link" href="#Git_Push">Git Push</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Git_Pull">Git Pull</a>
+        </li> 
+        <li>
+          <a class="nav-link" href="#Git_Revert">Git Revert</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Git_Merge">Git Merge</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Reference">Reference</a>
+        </li>
+      </ul>
+    </nav>
+    
+    <main id="main-doc">
+      <section class="main-section" id="Introduction_to_Git">
+        <header>Introduction to Git</header>
+        <article>
+          <p>
+            Git is an important part of daily programming (especially if you're working with a team) and is widely used in the software industry. 
+<h5>Why Use Git?</h5>
+Version control is very important - without it, you risk losing your work. With Git, you can make a "commit", or a save point, as often as you'd like. You can also go back to previous commits. This takes the pressure off of you while you're working. Commit often and commit early, and you'll never have that gut sinking feeling of overwriting or losing changes. 
+
+There are many version control systems out there - but Git has some major advantages.
+
+<ul>
+  <li>
+<h5>Speed</h5>
+Like we mentioned above, Git uses SHA compression, which makes it very fast.
+</li>
+
+<li>
+  <h5>Merge conflicts</h5>
+Git can handle merge conflicts, which mean that it's OK for multiple people to work on the same file at the same time. This opens up the world of development in a way that isn't possible with centralized version control. You have access to the entire project, and if you're working on a branch, you can do whatever you need to and know that your changes are safe.
+</li>
+
+<li>
+  <h5>Cheap branches</h5>
+Speaking of branches, Git offers a lot of flexibility and opportunity for collaboration with branches. By using branches, developers can make changes in a safe sandbox.<br>
+
+Instead of only committing code that is 100% sure to succeed, developers can commit code that might still need help. Then, they can push that code to the remote and get fast feedback from integrated tests or peer review.<br>
+
+Without sharing the code through branches, this would never be possible.
+</li>
+
+<li>
+  <h5>Ease of roll back</h5>
+If you make a mistake, it's OK! Commits are immutable, meaning they can't be changed. (Note: You can change history, but it will create new replacement commits instead of editing the existing commits. More on that later!) This means that if you do make a mistake, even on an important branch like main, it's OK. You can easily revert that change, or roll back the branch pointer to the commit where everything was fine.<br>
+The benefits of this can't be overstated. Not only does it create a safer environment for the project and code, but it fosters a development environment where developers can be braver, trusting that Git has their back.
+</li>
+</ul>
+
+
+It is worthy of note that git and GitHub are not the same thing. Git is an open-source, version control tool created in 2005 by developers working on the Linux operating system; GitHub is a company founded in 2008 that makes tools which integrate with git. You do not need GitHub to use git, but you cannot use GitHub without using git. <br>Alternatives to GitHub exist and are in use today. Some popular alternatives are:  
+</p>
+
+          
+          <ul>
+            <li>
+              Gitlab
+            </li>
+            <li>
+              
+              BitBuckets
+            </li>
+             <li>
+              Gogs
+            </li>
+            <li>
+              
+              Gittea
+            </li>
+
+            The last two are know as “host-your-own” solutions while all options are referred to in git-speak as “remotes” and are completely optional. It implies that you do not need to use a remote to use git, but it will make sharing your code with others easier.
+          </ul>
+        </article>
+      </section>  
+      <section class="main-section" id="Version_Control_Systems">
+        <header>Version Control Systems</header>
+        <article>
+          <p>These are software tools that help a software team to manage changes to their source code. It keeps track of every modification to the code. If a mistake is made, developers can compare earlier versions of the code and/or revert back the changes to help fix the mistakes without disrupting the other team members.
+As of now, the most widely used modern version control systems in the world are: 
+
+ <ul>
+            <li>
+              <h5>Git:</h5>A mature, actively maintained open source project originally developed by Linus Torvalds, the famous creator of the Linux operating system kernel, in the year 2005. Having a distributed architecture, Git is an example of "Distributed Version Control System" (DVCS). Rather than having only one single place for the full version history, every developer's working copy of the code can be treated as a repository in Git. In addition to being distributed, Git has been designed with performance, security and flexibility in mind.
+            </li>
+            <li>
+              <h5>TFS:</h5>Known as Team Foundation Server or TFS and wasbuilt by microsoft to manage the teams and the way they work. It is basically a management tool used in project management, reporting, requirements gathering and testing. It actually covers the entire software development life cycle and operates in Microsoft Windows. It consists of version control, issue-resolving and application management. This provides end-to-end development of software and testing. This is a back-end management system and uses Git to control the source code. It represents the automation process and testing of an application. It is provided with visual studio code.
+            </li>
+            <li>
+              <h5>CVS:</h5>A version control system that is an important component of Source Configuration Management (SCM). Using it, you can record the history of sources files, and documents. It fills a similar role to the free software RCS, PRCS, and Aegis packages.<br>
+
+CVS is a production quality system in wide use around the world, including many free software projects.
+            </li>
+          </ul>
+ </p>
+
+          
+      </article>
+    </section>
+      
+      <section class="main-section" id="Blobs_in_Git">
+        <header>Blobs in Git</header>
+        <article>
+          <p>
+            BLOB stands for a <strong>“Binary Large Object,”</strong> a data type that stores binary data. Binary Large Objects (BLOBs) can be complex files like images or videos, unlike other data strings that only store letters and numbers.   
+
+A BLOB will hold multimedia objects to add to a database; however, not all databases support BLOB storage. Because of their complex nature, BLOBs will also not be easily readable by most databases. These file types are better comprehended by humans instead of software. The complexity of a BLOB both gives it its value, but also can make it difficult to utilize.
+          </p>
+
+          <p>
+            A Git blob (binary large object) is the object type used to store the contents of each file in a repository. The file's SHA-1 hash is computed and stored in the blob object. These endpoints allow you to read and write blob objects to your Git database on GitHub. Blobs leverage these custom media types. 
+            The Git blob API lets you create and get a Git blob (binary large object), the object type used to store the contents of each file in a repository. <br>
+            More on the use of media type API on the <a href="https://docs.github.com/en/rest/overview/media-types">github</a> documentation page.
+          </p>
+          
+      </article>
+      </section>
+      <section class="main-section" id="Trees">
+        <header>Trees</header>
+        <article>
+          <p>
+            In git a tree is simply a directory or folder which holds blobs. It also stores references to blobs and trees which are also named as SHA1 hash of the tree object.
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="How_to_Install_Git">
+        <header>How to Install Git</header>
+        <p>
+    
+<h3>How to install Git on any OS</h3>
+
+Git can be installed on the most common operating systems like Windows, Mac, and Linux. In fact, Git comes installed by default on most Mac and Linux machines!
+
+<h3>Chec king for Git</h3>
+To see if you already have Git installed, open up your terminal application:
+<ul>
+<li>
+If you're on a Mac, look for a command prompt application called "Terminal".
+</li>
+<li>
+If you're on a Windows machine, open the windows command prompt or "Git Bash".
+</li>
+</ul>
+Once you've opened your terminal application, type <code>git version</code>. The output will either tell you which version of Git is installed, or it will alert you that git is an unknown command. If it's an unknown command, read further and find out how to install Git.
+
+Install Git Using GitHub Desktop
+Installing GitHub Desktop will also install the latest version of Git if you don't already have it. With GitHub Desktop, you get a command line version of Git with a robust GUI. Regardless of if you have Git installed or not, GitHub Desktop offers a simple collaboration tool for Git. <a href="https://desktop.github.com/">You can learn more here.</a>
+
+Install Git on Windows
+<ol>
+  <li>
+Navigate to the latest <a href="https://gitforwindows.org/">Git for Windows installer</a> and download the latest version.</li>
+<li>
+Once the installer has started, follow the instructions as provided in the Git Setup wizard screen until the installation is complete.
+</li>
+<li>
+Open the windows command prompt (or Git Bash if you selected not to use the standard Git Windows Command Prompt during the Git installation).
+</li>
+<li>
+Type <code>git version</code> to verify Git was installed.
+Note: <a href="https://git-scm.com/download/win"><code>git-scm</code></a> is a popular and recommended resource for downloading Git for Windows. The advantage of downloading Git from <code>git-scm</code> is that your download automatically starts with the latest version of Git included with the recommended command prompt, <code>Git Bash</code> . The download source is the same Git for Windows installer as referenced in the steps above.
+</li>
+</ol>
+
+<h3>Install Git on Mac</h3>
+Most versions of MacOS will already have <strong>Git</strong> installed, and you can activate it through the terminal with <code>git version.</code> However, if you don't have Git installed for whatever reason, you can install the latest version of Git using one of several popular methods as listed below:
+
+Install Git From an Installer
+<ol>
+  <li>
+Navigate to the latest macOS Git Installer and download the latest version.
+</li>
+<li>
+Once the installer has started, follow the instructions as provided until the installation is complete.
+</li>
+<li>
+Open the command prompt "terminal" and type git version to verify Git was installed.
+</li>
+Note: <code>git-scm</code> is a popular and recommended resource for downloading Git on a Mac. The advantage of downloading Git from git-scm is that your download automatically starts with the latest version of Git. The download source is the same <a href="https://sourceforge.net/projects/git-osx-installer/files/git-2.23.0-intel-universal-mavericks.dmg/download?use_mirror=autoselect">macOS Git Installer</a> as referenced in the steps above.
+
+<h3>Install Git from Homebrew</h3>
+<a href="https://brew.sh/">Homebrew</a> is a popular package manager for macOS. If you already have Homwbrew installed, you can follow the below steps to install Git:
+<ol>
+  <li>
+Open up a terminal window and install Git using the following command: <code>brew install git.</code>
+</li>
+<li>
+Once the command output has completed, you can verify the installation by typing: <code>git version.</code>
+</li>
+</ol>
+Install Git on Linux
+Fun fact: Git was originally developed to version the Linux operating system! So, it only makes sense that it is easy to configure to run on Linux. 
+<a href="https://github.com/git-guides/install-git#install-git-on-linux">Learn more about Git installation on Linux Machines</a>
+
+        </p>
+      </section>
+      <section class="main-section" id="GitHub">
+        <header>GitHub</header>
+        <article>
+          
+          <p>
+            <a href="https://github.com/">GitHub</a> is a web-based interface that uses Git, the open source version control software that lets multiple people make separate changes to web pages at the same time. As Carpenter notes, because it allows for real-time collaboration, GitHub encourages teams to work together to build and edit their site content. <br>GitHub allows multiple developers to work on a single project at the same time, reduces the risk of duplicative or conflicting work, and can help decrease production time. With GitHub, developers can build code, track changes, and innovate solutions to problems that might arise during the site development process simultaneously. Non-developers can also use it to create, edit, and update website content.
+          </p>
+
+          <p>
+           <h3>How to Setup a GitHub Account</h3>
+           It is assumed that you have followed through the preceeding sections to install git on your machine because you cannot ue Github without git however you can use git without Github.
+
+           Follow the steps below to setup a github account:
+
+
+           <ol>
+            <li>
+            Go to <a href="https://github.com/join">https://github.com/join</a>
+          </li>
+          <li>
+Type a user name, your email address, and a password.
+</li>
+<li>
+Choose Sign up for GitHub, and then follow the instructions.
+</li>
+      </p>
+        </article>
+      </section>
+<section class="main-section" id="Operations_in_Git">
+<header >Operations in Git</header>
+<p>For git to work, the user must be familiar with the various operations and commands. the next few section will look at the most commonly used operations in git. Since there Since there are many various commands you can use, mastering Git takes time. But some commands are used more frequently (some daily).</p>
+
+</section>
+
+
+      <section class="main-section" id="Changing_Directory_in_Git">
+        <header>Changing Directory in Git</header>
+        <article>
+          <p>
+           Changing the directory is important as you are always shuffling between different directories all the time while working with Git Bash. Directory is a technical term for the folder. You can change the directory in two ways:
+<ul>
+  <li>
+
+Directly through Git Bash using commands
+</li>
+<li>
+By opening Git Bash in the desired folder
+</li>
+</ul>
+<h3>Browse to the desired Directory through Commands in Git Bash</h3>
+You can change the directory inside Git Bash with the help of the cd command. cd command is commonly used in the shell of your system (cmd) for the same purpose. Here, I the directory is changed using the cd command
+<ol>
+  <li>
+Open your Git Bash.
+</li>
+<li>
+Type the following command <code>cd [path of the directory]</code> and press enter.
+    </li>
+
+    <h3>Open Git Bash directly in the folder</h3>
+Changing the directory through opening it in the same folder is quite straightforward. For this, go to the directory to which you want to change the directory in a normal way you explore your system.
+
+After this, right click anywhere in the directory => <strong>Open Git Bash here</strong>.
+
+         </p>
+
+          
+        </article>
+      </section>
+      <section class="main-section" id="Creating_and_Managing_a_Repository">
+        <header>Creating and Managing a Repository</header>
+        <article>
+          <p>
+            <h3>Initializing a new repository</h3>
+To create a new repo, you'll use the <code>git init command.</code> git init is a one-time command you use during the initial setup of a new repo. Executing this command will create a new <code>.git subdirectory</code> in your current working directory. This will also create a new main branch. 
+          </p> 
+
+          <p>
+            <h3>Versioning an existing project with a new git repository</h3>
+This example assumes you already have an existing project folder that you would like to create a repo within. You'll first change directory to the root project folder and then execute the git init command.
+
+<code>cd /path/to/your/existing/code git init </code>
+<br>
+
+Pointing git init to an existing project directory will execute the same initialization setup as mentioned above, but scoped to that project directory.
+
+<code>git init [project directory]</code>
+
+  To learn more about git init, vist the <a href="https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-init">git init</a> page.
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="Cloning_a_Repository">
+        <header>Cloning a Repository</header>
+        <article>
+          <p>
+            The <code>git clone</code> comand is an important command for downloading existing source code into a repository. Git clone  makes an identical copy of the latest version of a project in a repository and saves it to your computer. 
+            <br>
+            the most common way of cloning a repository is to use the following format
+
+            <code>git clone [https://name-of-repository-link]</code>
+
+            Therefore,  if you want to download a project from Github, all we need to do is click on the green button (clone or download), copy the URL in the box and paste it after the git clone command that is shown above.
+          </p>
+
+          
+        </article>
+      </section>
+      <section class="main-section" id="Branching">
+        <header>Branching</header>
+        <article>
+          <p>Branchinng is a highly important concept in the git world. By using branches, several developers are able to work in parallel on the same project simultaneously. We can use the git branch command for creating, listing and deleting branches.
+
+To create a new branch use:
+
+<code>git branch [branch-name]</code><br>
+This command will create a branch locally. To push the new branch into the remote repository, you need to use the following command:
+
+<code>git push -u [remote] [branch-name]</code><br>
+Viewing branches:
+
+<code>git branch or git branch --list</code><br>
+If you want to <strong>delete</strong> a branch, you can use the following command:
+
+<code>git branch -d [branch-name]</code>
+</p>
+        </article>
+      </section>
+      <section class="main-section" id="Git_Checkout">
+        <header>Git Checkout</header>
+        <article>
+          <p>
+           This is also one of the most used Git commands. To work in a branch, first you need to switch to it. We use git checkout mostly for switching from one branch to another. We can also use it for checking out files and commits.
+
+<code>git checkout [name-of-your-branch]</code>
+There are some steps you need to follow for successfully switching between branches:
+<ul>
+  <li>
+The changes in your current branch must be committed or saved before you switch.
+</li>
+<li>
+The branch you want to check out should exist in your local
+</li>
+</ul>
+There is also a shortcut command that allows you to create and switch to a branch at the same time:
+
+<code>git checkout -b [name-of-your-branch]</code>
+This command creates a new branch in your local (-b stands for branch) and checks the branch out to new right after it has been created.   
+          </p>
+          
+        </article>
+      </section>
+      <section class="main-section" id="Git_Status">
+        <header>Git Status</header>
+        <article>
+          <p>
+The Git status command gives us all the necessary information about the current branch. 
+
+<code>git status</code>
+We can gather information like:
+<ul>
+  <li>
+Whether the current branch is up to date
+</li>
+<li>
+Whether there is anything to commit, push or pull
+</li>
+<li>
+Whether there are files staged, unstaged or untracked
+</li>
+<li>
+Whether there are files created, modified or deleted
+ </li>
+ </ul>         
+
+</p>
+        </article>
+      </section>
+      <section class="main-section" id="Git_Add">
+        <header>Git Add</header>
+        <article>
+          When we create, modify or delete a file, these changes will happen in our local and won't be included in the next commit (unless we change the configurations).
+
+We need to use the git add command to include the changes of a file(s) into our next commit. 
+
+To add a single file:
+
+<code>git add [file]</code><br>
+To add everything at once:
+
+<code>git add -A</code> <br>
+If you run a git status, some file names that are red mean that they're unstaged files. The unstaged files won't be included in your commits.
+They are included using git add.<br>
+
+<strong>Important: The git add command doesn't change the repository and the changes are not saved until we use git commit.</strong>
+        </article>
+      </section>
+      
+
+      <section class="main-section" id="Git_Commit">
+        <header>Git Commit</header>
+        <article>
+This is maybe the most-used command of Git. Once we reach a certain point in development, we want to save our changes (maybe after a specific task or issue).
+
+Git commit is like setting a checkpoint in the development process which you can go back to later if needed.
+
+We also need to write a short message to explain what we have developed or changed in the source code.
+
+<code>git commit -m "commit message"</code>
+<strong>Important: Git commit saves your changes only locally.</strong>
+      </article>
+      </section>
+      <section class="main-section" id="Git_Push">
+        <header>Git Push</header>
+        <article>
+After committing your changes, the next thing you want to do is send your changes to the remote server. Git push uploads your commits to the remote repository.
+
+<code>git push [remote] [branch-name]</code>
+However, if your branch is newly created, then you also need to upload the branch with the following command:
+
+<code>git push --set-upstream [remote] [name-of-your-branch]</code>
+or
+
+<code>git push -u origin [branch_name]</code>
+<strong>Important: Git push only uploads changes that are committed.</strong>
+      </article>
+      </section>
+      <section class="main-section" id="Git_Pull">
+        <header>Git Pull</header>
+        <article>
+The git pull command is used to get updates from the remote repo. This command is a combination of git fetch and git merge which means that, when we use git pull, it gets the updates from remote repository (git fetch) and immediately applies the latest changes in your local (git merge).
+
+<code>git pull <remote></code>
+<strong>This operation may cause conflicts that you need to solve manually.</strong>
+      </article>
+      </section>
+      <section class="main-section" id="Git_Revert">
+        <header>Git Revert</header>
+        <article>
+<p>Sometimes we need to undo the changes that we've made. There are various ways to undo our changes locally or remotely (depends on what we need), but we must carefully use these commands to avoid unwanted deletions.
+
+A safer way that we can undo our commits is by using git revert. To see our commit history, first we need to use 
+<code>git log--oneline</code>
+</p>
+<p>
+Next, we just need to specify the hash code next to our commit that we would like to undo:
+
+<code>git revert [xxxxxxx]</code>
+After this, you will see a screen, just press shift + q to exit.
+<br>
+The Git revert command will undo the given commit, but will create a new commit without deleting the older one<br>
+The advantage of using git revert is that it doesn't touch the commit history. This means that you can still see all of the commits in your history, even the reverted ones.<br> 
+
+Another safety measure here is that everything happens in our local system unless we push them to the remote repo. That's why git revert is safer to use and is the preferred way to undo our commits.
+
+</p>
+      </article>
+      </section>
+      <section class="main-section" id="Git_Merge">
+        <header>Git Merge</header>
+        <article>
+<p>When you've completed development in your branch and everything works fine, the final step is merging the branch with the parent branch (dev or master). This is done with the git merge command.<br>
+
+Git merge basically integrates your feature branch with all of its commits back to the dev (or master) branch. It's important to remember that you first need to be on the specific branch that you want to merge with your feature branch.
+</p>
+<p>
+For example, when you want to merge your feature branch into the dev branch:
+
+<strong>First you should switch to the dev branch:</strong>
+
+<code>git checkout dev</code>
+Before merging, you should update your local dev branch:
+
+<code>git fetch</code>
+Finally, you can merge your feature branch into dev:
+
+<code>git merge [branch-name]</code><br>
+<strong>
+Hint: Make sure your dev branch has the latest version before you merge your branches, otherwise you may face conflicts or other unwanted problems.
+</strong>
+</p>
+      </article>
+      </section>
+    
+    <section class="main-section" id="Reference">
+        <header>Reference</header>
+        <article>
+          <ul>
+            <li>
+              Most contents on Git Operations were culled from:
+              <a
+                href="https://www.freecodecamp.org/news/10-important-git-commands-that-every-developer-should-know/"
+                target="_blank"
+                >FreeCodeCamp</a>
+            </li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+  </body>
+</html>
